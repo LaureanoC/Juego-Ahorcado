@@ -1,4 +1,4 @@
-var lista = ["Alura", "Oracle", "Computadora"];
+var lista = ["alura", "oracle", "computadora"];
 
 function aleatorio(n){
 
@@ -55,16 +55,75 @@ function eliminarPalabraOculta (){
 }
 
 
-console.log(elegirPalabra(lista));
 
+function validarEntrada(letra){
+
+    if((letra > 64) && (letra < 91) && (letra != 20)){
+
+        console.log("Es admitida!");
+
+        return true;
+
+    }
+    else {
+
+        console.log("No entro!");
+        return false;
+
+    }
+
+}
+
+function cambiarLetra(palabra,letra){
+
+    letra = letra.toLowerCase();
+    var letras = document.querySelectorAll(".palabra-actual");
+    
+        console.log(letras[0].textContent); // Asi accedo al HTML
+
+    
+        for (i=0; i<palabra.length; i++){
+
+            if (palabra[i] == letra){
+                console.log("ENTRE EN EL IF");
+                letras[i].textContent = letra;
+            }
+           
+
+        }
+    
+    
+    }
+
+
+console.log(elegirPalabra(lista));
 var botonSiguiente = document.querySelector("#boton-siguiente");
 botonSiguiente.addEventListener("click", function(){
 
     botonSiguiente.innerHTML = "Siguiente";
-    eliminarPalabraOculta();
     var palabraActual = elegirPalabra(lista);
+    eliminarPalabraOculta();
     crearPalabraOculta(palabraActual);
+
+    //Sector de adivinar Letras
+
     console.log(palabraActual);
+
+    var evento = document.querySelector("html");
+        evento.addEventListener("keyup", function(evento) {
+
+            if(validarEntrada(evento.keyCode)){
+
+                cambiarLetra(palabraActual, evento.key);
+
+            }
+           
+            
+            
+
+    })
   
 });
+
+
 
