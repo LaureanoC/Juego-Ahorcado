@@ -43,6 +43,17 @@ function crearPalabraOculta (palabra) {
 
 }
 
+function eliminarPalabraOculta (){
+
+    var pActuales = document.querySelectorAll(".palabra-actual");
+    for (i=0; i<pActuales.length; i++){
+
+        pActuales[i].remove();
+    }
+   
+    console.log(pActuales);
+}
+
 
 console.log(elegirPalabra(lista));
 
@@ -50,10 +61,10 @@ var botonSiguiente = document.querySelector("#boton-siguiente");
 botonSiguiente.addEventListener("click", function(){
 
     botonSiguiente.innerHTML = "Siguiente";
+    eliminarPalabraOculta();
     var palabraActual = elegirPalabra(lista);
     crearPalabraOculta(palabraActual);
     console.log(palabraActual);
   
-    
 });
 
