@@ -1,4 +1,4 @@
-var lista = ["alura", "oracle", "computadora"];
+var lista = ["Alura", "Oracle", "Computadora", "Escritorio", "Mouse", "Teclado"];
 
 function aleatorio(n){
 
@@ -6,7 +6,6 @@ function aleatorio(n){
 
 }
 
-console.log(aleatorio(lista.length));
 
 function elegirPalabra(lista) {
 
@@ -16,7 +15,7 @@ function elegirPalabra(lista) {
 
 function cambiarAGuiones(palabra){
 
-    var nuevo = palabra.split('');
+    var nuevo = palabra.split(palabra);
     console.log(nuevo)
     return nuevo;
 }
@@ -27,28 +26,46 @@ function crearElementoGuion(){
     const nuevoP = document.createElement("p");
     const contenido = document.createTextNode("_");
     nuevoP.appendChild(contenido);
-    nuevoP.className = "palabra-actual";
+    nuevoP.className = "guion-actual";
     //CONECTAMOS P
     const pActual = document.querySelector("#palabra-ahorcado");
     pActual.insertAdjacentElement("afterbegin", nuevoP);
     console.log("Elemento creado: ", nuevoP);
 }
 
+function crearElemento(palabra){
+
+    //CREAMOS <P>
+    const nuevoP = document.createElement("p");
+    const contenido = document.createTextNode(palabra);
+    nuevoP.appendChild(contenido);
+    nuevoP.className = "letra-actual";
+    console.log(nuevoP);
+    //CONECTAMOS P
+    const pActual = document.querySelector("#palabra-ahorcado");
+    pActual.insertAdjacentElement("beforeend", nuevoP);
+}
+
 function crearPalabraOculta (palabra) {
 
+    
     for (i=0; i<palabra.length; i++){
 
         crearElementoGuion();
+        
     }
+
 
 }
 
 function eliminarPalabraOculta (){
 
-    var pActuales = document.querySelectorAll(".palabra-actual");
+    var pActuales = document.querySelectorAll(".guion-actual");
+   
     for (i=0; i<pActuales.length; i++){
 
         pActuales[i].remove();
+        
     }
    
     console.log(pActuales);
@@ -60,14 +77,14 @@ function validarEntrada(letra){
 
     if((letra > 64) && (letra < 91) && (letra != 20)){
 
-        console.log("Es admitida!");
+  
 
         return true;
 
     }
     else {
 
-        console.log("No entro!");
+ 
         return false;
 
     }
@@ -76,54 +93,72 @@ function validarEntrada(letra){
 
 function cambiarLetra(palabra,letra){
 
-    letra = letra.toLowerCase();
-    var letras = document.querySelectorAll(".palabra-actual");
     
-        console.log(letras[0].textContent); // Asi accedo al HTML
+    console.log(palabra);
 
+    var letras = document.querySelectorAll(".guion-actual");
     
-        for (i=0; i<palabra.length; i++){
 
-            if (palabra[i] == letra){
-                console.log("ENTRE EN EL IF");
-                letras[i].textContent = letra;
-            }
-           
+    console.log(letras);
+
+    for (i=0; i<palabra.length; i++){
+
+        if(palabra[i] == letra){
+
+            letras[i].textContent = letra.toUpperCase();
+
 
         }
-    
-    
+
+
     }
 
 
-console.log(elegirPalabra(lista));
-var botonSiguiente = document.querySelector("#boton-siguiente");
-botonSiguiente.addEventListener("click", function(){
-
-    botonSiguiente.innerHTML = "Siguiente";
-    var palabraActual = elegirPalabra(lista);
-    eliminarPalabraOculta();
-    crearPalabraOculta(palabraActual);
-
-    //Sector de adivinar Letras
-
-    console.log(palabraActual);
-
-    var evento = document.querySelector("html");
-        evento.addEventListener("keyup", function(evento) {
-
-            if(validarEntrada(evento.keyCode)){
-
-                cambiarLetra(palabraActual, evento.key);
-
-            }
-           
-            
-            
-
-    })
-  
-});
+    }
 
 
+    
+    
+    var aux = 0 ;
+    var palabraActual = "Oracle";
+    var botonSiguiente = document.querySelector("#boton-siguiente");
+    botonSiguiente.addEventListener("click", function(){
 
+        aux = aux + 1;
+        console.log(aux);
+        
+        botonSiguiente.innerHTML = "Siguiente palabra";
+
+        palabraActual = elegirPalabra(lista);
+        palabraActual = palabraActual.toLowerCase();
+        eliminarPalabraOculta();
+        crearPalabraOculta(palabraActual);
+       
+        var evento = document.querySelector("html");
+        evento.addEventListener("keyup",  function(evento) {
+                
+                
+                
+            })
+        
+        
+    });
+
+var contador = document.querySelector("html");
+    contador.addEventListener("keyup", function(evento){
+
+        console.log("EVENTO POR AFUERA A VER GASTON - >  " + aux);
+        console.log("Palabra: " + palabraActual);
+        var letraPresionada = evento.key.toLowerCase();
+
+                if(validarEntrada(evento.keyCode)){
+
+                    console.log("Valido");
+                    
+                    cambiarLetra(palabraActual,letraPresionada);
+                    
+
+                }
+
+    })                                                              //LA VARIABLE QUEDA GUARDADA PQ ES GLOBAL
+   

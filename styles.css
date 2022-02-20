@@ -4,8 +4,13 @@
 
 }
 
-.palabra-actual {
+.guion-actual{
 
     margin:0.7rem;
     font-size:9rem;
+}
+
+.letra-actual {
+
+    display: none;
 }
