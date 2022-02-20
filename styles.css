@@ -1,0 +1,11 @@
+.container-palabra {
+
+    display:flex;
+
+}
+
+.palabra-actual {
+
+    margin:0.7rem;
+    font-size:9rem;
+}
