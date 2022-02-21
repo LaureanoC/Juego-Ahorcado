@@ -127,12 +127,12 @@ function insertarTexto(resultado){
 
     if(resultado){
         texto.setAttribute("style","transition:2s; color:green");
-        texto.innerHTML = "¡Victoria!";
+        texto.innerHTML = "¡Muy bien! Acertaste.";
 
     }
     else{
         texto.setAttribute("style","transition:2s; color:#b11212");
-        texto.innerHTML = "Derrota.";
+        texto.innerHTML = "Perdiste, la palabra era: " + palabraActual;
     }
     
 
