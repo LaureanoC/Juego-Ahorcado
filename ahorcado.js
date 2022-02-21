@@ -105,6 +105,29 @@ function comprobarAceptadasYRechazadas(letra){
    console.log(existencia);
 }
 
+function crearElementoLetraRechazada(letra){
+
+    //CREAMOS <P>
+    const nuevoP = document.createElement("p");
+    const contenido = document.createTextNode("_");
+    nuevoP.appendChild(contenido);
+    nuevoP.className = "guion-actual";
+    //CONECTAMOS P
+    const pActual = document.querySelector("#palabra-ahorcado");
+    pActual.insertAdjacentElement("afterbegin", nuevoP);
+    console.log("Elemento creado: ", nuevoP);
+}
+
+function mostrarLetrasRechazadas(){
+
+    const mostrarLetras = document.querySelector(".letras-rechazadas");
+    mostrarLetras.innerHTML = "Letras rechazadas: " + letrasRechazadas;
+
+}
+
+
+
+
 function agregarLetraIngresada (letra){
 
     const letras = document.querySelectorAll(".guion-actual");
@@ -119,11 +142,11 @@ function agregarLetraIngresada (letra){
 
     if (existencia == false){
 
-        console.log("letrasrechazads length: " + letrasRechazada.length);
 
-        for(i=0; i<letrasRechazada.length; i++){
 
-            if(letrasRechazada[i] == letra){
+        for(i=0; i<letrasRechazadas.length; i++){
+
+            if(letrasRechazadas[i] == letra){
 
                 existencia = true;
                 console.log("Existe la letra en la lista de rechazos");
@@ -135,8 +158,10 @@ function agregarLetraIngresada (letra){
         if(existencia == false){
 
             console.log("No existe ne la lista de rechazos");
-            letrasRechazada.push(letra);
-            console.log(letrasRechazada);
+            letrasRechazadas.push(letra);
+            console.log(letrasRechazadas);
+            mostrarLetrasRechazadas();
+            
 
         }
         
@@ -151,7 +176,7 @@ function agregarLetraIngresada (letra){
     
    
     var palabraActual = "Oracle";
-    var letrasRechazada = [];
+    var letrasRechazadas = [];
     var jugando = false;
 
 
