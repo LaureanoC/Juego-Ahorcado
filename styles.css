@@ -20,6 +20,7 @@ header{
     width: 70%;
     margin:0 auto;
     display:flex;
+    flex-flow:row wrap;
    
 
 
@@ -30,44 +31,69 @@ header{
     font-size:6rem;
     flex-basis:100%;
     text-align:center;
+    color:#2980b9;
 
 }
 
 .container-palabra{
 
     display: flex;
+    margin:auto;
     gap:2rem;
 }
 
 
-
-
-
 .boton {
-
+    
+    max-width: 1920px;
+    width: 70%;
+    margin:0 auto;
+    text-align: center;
     font-size:4.5rem;
+}
+
+.boton:hover{
+    cursor:pointer;
+    color:#2980b9;
+    transition:1s;
 }
 
 .guion-actual{
 
     
     margin:auto;
-    font-size:9rem;
+    font-size:8rem;
 }
 
 .letras-rechazadas{
-
+   
     font-size: 3rem;
+    flex-basis:50%;
     margin: 3rem 0;
 
 }
 
+.texto {
+    text-align:center;
+    margin: 3rem 0;
+    flex-basis:50%;
+    font-size:3rem;
+}
+
+.push {
+
+  margin:2.5rem;
+
+}
 footer{
 
     background-color:#2980B9;
-    padding:1rem;
+    padding:2.5rem;
+    min-height: auto;
 }
+
 .footer-text {
+        
         text-align:center;
         font-size:3rem;
 }

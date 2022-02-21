@@ -1,7 +1,8 @@
-var lista = ["Alura", "Oracle", "Computadora", "Escritorio", "Mouse", "Teclado", "Botellla", "Videojuego", "Sombrilla", "Tomate", "Pera", "Manzana",
+var lista = ["Alura", "Oracle", "Computadora", "Escritorio", "Mouse", "Teclado", "Botella", "Videojuego", "Sombrilla", "Tomate", "Pera", "Manzana",
              "Zapallo", "Lechuga", "Pelicula", "Caja", "Perro", "Gato", "Costeleta", "Ciudad", "Pueblo", "Dinosaurio", "Tigre","Mono"
 
 ];
+
 
 function aleatorio(n){
 
@@ -118,18 +119,60 @@ function mostrarLetrasRechazadas(){
 
 }
 
+function insertarTexto(resultado){
+
+    const texto = document.querySelector(".texto");
+
+    if(resultado){
+
+        texto.innerHTML = "¡Victoria!";
+
+    }
+    else{
+
+        texto.innerHTML = "Derrota.";
+    }
+    
+
+}
 
 function agregarLetraIngresada (letra){
 
     const letras = document.querySelectorAll(".guion-actual");
-        existencia = false;            
+
+        existencia = false;      
+        
+
     for (i=0; i<letras.length; i++){
+
 
         if (letra == palabraActual[i]){
             letras[i].textContent = letra;
-            existencia = true;
+            existencia = true; 
         }
+        
     }
+    
+    var tablero = [];
+    for (i=0; i<letras.length; i++){
+        
+        
+        tablero = tablero.concat(letras[i].textContent);  
+    }
+    
+    tablero = tablero.join('');
+    console.log(typeof(tablero));
+    console.log(tablero);
+
+    if (tablero == palabraActual){
+
+        insertarTexto();
+        audioVictoria.play();
+        insertarTexto(true);
+        jugando = false;
+    }
+
+    
 
     if (existencia == false){
 
@@ -151,10 +194,15 @@ function agregarLetraIngresada (letra){
 
             console.log("No existe ne la lista de rechazos");
             errores = errores + 1;
+            if(errores !=6){
+                audioError.play();
+            }
+           
 
             if(errores == 1){
 
                 dibujarCabeza();
+                
             }
             if(errores == 2){
 
@@ -176,23 +224,27 @@ function agregarLetraIngresada (letra){
 
                 dibujarPiernaDer();
                 jugando = false;
-                console.log("PERDISTE");
+                insertarTexto(false);
+                audioDerrota.play();
+                
             }
-
-
-
-
 
             console.log("Numero de errores: " +errores);
             letrasRechazadas.push(letra);
             console.log(letrasRechazadas);
             mostrarLetrasRechazadas();
             
-
         }
         
     }
     
+}
+
+function eliminarResultado(){
+
+    const resultado = document.querySelector(".texto");
+    resultado.innerHTML = "";
+
 }
 
 function eliminarRechazadas(){
@@ -203,10 +255,11 @@ function eliminarRechazadas(){
 
 }
 
-
-    
-    
-   
+ 
+    const audioError = new Audio ('audio/sonidoError.mp3');
+    const audioDerrota = new Audio ('audio/derrota.mp3');
+    const audioVictoria = new Audio ('audio/victoria.mp3');
+    var acertadas = 0;
     var palabraActual = "Oracle";
     var letrasRechazadas = [];
     var jugando = false;
@@ -221,11 +274,13 @@ function eliminarRechazadas(){
         //Reinicio --
 
         errores = 0;
+        acertadas = 0;
         letrasRechazadas=[];
         limpiarPantalla();
         dibujarHorca();
         eliminarPalabraOculta();
         eliminarRechazadas();
+        eliminarResultado();
 
         // ---
 
@@ -237,6 +292,7 @@ function eliminarRechazadas(){
         jugando = true;
            
     });
+
 
     var contador = document.querySelector("html");
     contador.addEventListener("keyup", function(evento){
