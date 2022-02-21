@@ -123,13 +123,14 @@ function insertarTexto(resultado){
 
     const texto = document.querySelector(".texto");
 
-    if(resultado){
 
+    if(resultado){
+        texto.setAttribute("style","transition:2s; color:green");
         texto.innerHTML = "¡Victoria!";
 
     }
     else{
-
+        texto.setAttribute("style","transition:2s; color:#b11212");
         texto.innerHTML = "Derrota.";
     }
     
@@ -148,7 +149,8 @@ function agregarLetraIngresada (letra){
 
         if (letra == palabraActual[i]){
             letras[i].textContent = letra;
-            existencia = true; 
+            existencia = true;
+            audioAcertado.play(); 
         }
         
     }
@@ -243,6 +245,7 @@ function agregarLetraIngresada (letra){
 function eliminarResultado(){
 
     const resultado = document.querySelector(".texto");
+    resultado.removeAttribute("style");
     resultado.innerHTML = "";
 
 }
@@ -255,7 +258,7 @@ function eliminarRechazadas(){
 
 }
 
- 
+    const audioAcertado = new Audio ('audio/sonidoAcertado.mp3');
     const audioError = new Audio ('audio/sonidoError.mp3');
     const audioDerrota = new Audio ('audio/derrota.mp3');
     const audioVictoria = new Audio ('audio/victoria.mp3');
