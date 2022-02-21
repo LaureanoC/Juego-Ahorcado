@@ -1,5 +1,6 @@
 var lista = ["Alura", "Oracle", "Computadora", "Escritorio", "Mouse", "Teclado", "Botella", "Videojuego", "Sombrilla", "Tomate", "Pera", "Manzana",
-             "Zapallo", "Lechuga", "Pelicula", "Caja", "Perro", "Gato", "Costeleta", "Ciudad", "Pueblo", "Dinosaurio", "Tigre","Mono"
+             "Zapallo", "Lechuga", "Pelicula", "Caja", "Perro", "Gato", "Costeleta", "Ciudad", "Pueblo", "Dinosaurio", "Tigre","Mono", "Barco","Sopa","Luna","Peluche",
+             "Naranja","Monitor","Pantalla","Lapicera","Programa","Celular","Software","Hardware","Playa","Caracol"
 
 ];
 
@@ -20,7 +21,7 @@ function elegirPalabra(lista) {
 function cambiarAGuiones(palabra){
 
     var nuevo = palabra.split(palabra);
-    console.log(nuevo)
+
     return nuevo;
 }
 
@@ -34,7 +35,7 @@ function crearElementoGuion(){
     //CONECTAMOS P
     const pActual = document.querySelector("#palabra-ahorcado");
     pActual.insertAdjacentElement("afterbegin", nuevoP);
-    console.log("Elemento creado: ", nuevoP);
+  
 }
 
 
@@ -89,14 +90,14 @@ function comprobarAceptadasYRechazadas(letra){
    existencia = false;    
    for(i=0; i<palabraActual.length ;i++){
 
-    console.log(palabraActual[i] + " + letra: " + letra);
+    
     if(palabraActual[i]==letra){
         existencia = true;
         break;     
     }  
    }
 
-   console.log(existencia);
+   
 }
 
 function crearElementoLetraRechazada(letra){
@@ -109,7 +110,7 @@ function crearElementoLetraRechazada(letra){
     //CONECTAMOS P
     const pActual = document.querySelector("#palabra-ahorcado");
     pActual.insertAdjacentElement("afterbegin", nuevoP);
-    console.log("Elemento creado: ", nuevoP);
+   
 }
 
 function mostrarLetrasRechazadas(){
@@ -163,8 +164,7 @@ function agregarLetraIngresada (letra){
     }
     
     tablero = tablero.join('');
-    console.log(typeof(tablero));
-    console.log(tablero);
+
 
     if (tablero == palabraActual){
 
@@ -186,7 +186,7 @@ function agregarLetraIngresada (letra){
             if(letrasRechazadas[i] == letra){
 
                 existencia = true;
-                console.log("Existe la letra en la lista de rechazos");
+               
                 break;
             }
 
@@ -194,7 +194,7 @@ function agregarLetraIngresada (letra){
 
         if(existencia == false){
 
-            console.log("No existe ne la lista de rechazos");
+          
             errores = errores + 1;
             if(errores !=6){
                 audioError.play();
@@ -231,9 +231,9 @@ function agregarLetraIngresada (letra){
                 
             }
 
-            console.log("Numero de errores: " +errores);
+            
             letrasRechazadas.push(letra);
-            console.log(letrasRechazadas);
+            
             mostrarLetrasRechazadas();
             
         }
@@ -302,7 +302,7 @@ function eliminarRechazadas(){
 
         if(jugando){
 
-            console.log("Palabra: " + palabraActual);                            //LA VARIABLE QUEDA GUARDADA PQ ES GLOBAL
+                                  //LA VARIABLE QUEDA GUARDADA PQ ES GLOBAL
             var letraPresionada = evento.key.toLowerCase();     
     
                     if(validarEntrada(evento.keyCode)){
