@@ -1,4 +1,7 @@
-var lista = ["Alura", "Oracle", "Computadora", "Escritorio", "Mouse", "Teclado"];
+var lista = ["Alura", "Oracle", "Computadora", "Escritorio", "Mouse", "Teclado", "Botellla", "Videojuego", "Sombrilla", "Tomate", "Pera", "Manzana",
+             "Zapallo", "Lechuga", "Pelicula", "Caja", "Perro", "Gato", "Costeleta", "Ciudad", "Pueblo", "Dinosaurio", "Tigre","Mono"
+
+];
 
 function aleatorio(n){
 
@@ -33,18 +36,7 @@ function crearElementoGuion(){
     console.log("Elemento creado: ", nuevoP);
 }
 
-function crearElemento(palabra){
 
-    //CREAMOS <P>
-    const nuevoP = document.createElement("p");
-    const contenido = document.createTextNode(palabra);
-    nuevoP.appendChild(contenido);
-    nuevoP.className = "letra-actual";
-    console.log(nuevoP);
-    //CONECTAMOS P
-    const pActual = document.querySelector("#palabra-ahorcado");
-    pActual.insertAdjacentElement("beforeend", nuevoP);
-}
 
 function crearPalabraOculta (palabra) {
 
@@ -91,74 +83,109 @@ function validarEntrada(letra){
 
 }
 
-function cambiarLetra(palabra,letra){
+function comprobarListaRechazadas(letra){
+ 
+  
 
-    
-    console.log(palabra);
+}
 
-    var letras = document.querySelectorAll(".guion-actual");
-    
 
-    console.log(letras);
+function comprobarAceptadasYRechazadas(letra){
 
-    for (i=0; i<palabra.length; i++){
+   existencia = false;    
+   for(i=0; i<palabraActual.length ;i++){
 
-        if(palabra[i] == letra){
+    console.log(palabraActual[i] + " + letra: " + letra);
+    if(palabraActual[i]==letra){
+        existencia = true;
+        break;     
+    }  
+   }
 
-            letras[i].textContent = letra.toUpperCase();
+   console.log(existencia);
+}
 
+function agregarLetraIngresada (letra){
+
+    const letras = document.querySelectorAll(".guion-actual");
+        existencia = false;            
+    for (i=0; i<letras.length; i++){
+
+        if (letra == palabraActual[i]){
+            letras[i].textContent = letra;
+            existencia = true;
+        }
+    }
+
+    if (existencia == false){
+
+        console.log("letrasrechazads length: " + letrasRechazada.length);
+
+        for(i=0; i<letrasRechazada.length; i++){
+
+            if(letrasRechazada[i] == letra){
+
+                existencia = true;
+                console.log("Existe la letra en la lista de rechazos");
+                break;
+            }
 
         }
 
+        if(existencia == false){
 
+            console.log("No existe ne la lista de rechazos");
+            letrasRechazada.push(letra);
+            console.log(letrasRechazada);
+
+        }
+        
     }
+    
+}
 
 
-    }
 
 
     
     
-    var aux = 0 ;
+   
     var palabraActual = "Oracle";
+    var letrasRechazada = [];
+    var jugando = false;
+
+
+
     var botonSiguiente = document.querySelector("#boton-siguiente");
     botonSiguiente.addEventListener("click", function(){
 
-        aux = aux + 1;
-        console.log(aux);
-        
+          
         botonSiguiente.innerHTML = "Siguiente palabra";
 
         palabraActual = elegirPalabra(lista);
         palabraActual = palabraActual.toLowerCase();
         eliminarPalabraOculta();
         crearPalabraOculta(palabraActual);
-       
-        var evento = document.querySelector("html");
-        evento.addEventListener("keyup",  function(evento) {
-                
-                
-                
-            })
-        
-        
+        jugando = true;
+           
     });
 
-var contador = document.querySelector("html");
+    var contador = document.querySelector("html");
     contador.addEventListener("keyup", function(evento){
 
-        console.log("EVENTO POR AFUERA A VER GASTON - >  " + aux);
-        console.log("Palabra: " + palabraActual);
-        var letraPresionada = evento.key.toLowerCase();
+        if(jugando){
 
-                if(validarEntrada(evento.keyCode)){
+            console.log("Palabra: " + palabraActual);                            //LA VARIABLE QUEDA GUARDADA PQ ES GLOBAL
+            var letraPresionada = evento.key.toLowerCase();     
+    
+                    if(validarEntrada(evento.keyCode)){
+                        
+                        agregarLetraIngresada(letraPresionada);
+    
+                    }
+        }
+        
+                
 
-                    console.log("Valido");
-                    
-                    cambiarLetra(palabraActual,letraPresionada);
-                    
-
-                }
-
-    })                                                              //LA VARIABLE QUEDA GUARDADA PQ ES GLOBAL
+    })                                                             
    
