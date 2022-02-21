@@ -53,14 +53,14 @@ function crearPalabraOculta (palabra) {
 function eliminarPalabraOculta (){
 
     var pActuales = document.querySelectorAll(".guion-actual");
+    
    
     for (i=0; i<pActuales.length; i++){
 
-        pActuales[i].remove();
+        pActuales[i].remove(); 
         
     }
-   
-    console.log(pActuales);
+
 }
 
 
@@ -133,7 +133,8 @@ function agregarLetraIngresada (letra){
 
     if (existencia == false){
 
-
+       
+        
 
         for(i=0; i<letrasRechazadas.length; i++){
 
@@ -149,6 +150,40 @@ function agregarLetraIngresada (letra){
         if(existencia == false){
 
             console.log("No existe ne la lista de rechazos");
+            errores = errores + 1;
+
+            if(errores == 1){
+
+                dibujarCabeza();
+            }
+            if(errores == 2){
+
+                dibujarTorso();
+            }
+            if(errores == 3){
+
+                dibujarBrazoIzq();
+            }
+            if(errores == 4){
+
+                dibujarBrazoDer();
+            }
+            if(errores == 5){
+
+                dibujarPiernaIzq();
+            }
+            if(errores == 6){
+
+                dibujarPiernaDer();
+                jugando = false;
+                console.log("PERDISTE");
+            }
+
+
+
+
+
+            console.log("Numero de errores: " +errores);
             letrasRechazadas.push(letra);
             console.log(letrasRechazadas);
             mostrarLetrasRechazadas();
@@ -160,7 +195,13 @@ function agregarLetraIngresada (letra){
     
 }
 
+function eliminarRechazadas(){
 
+    letrasRechazadas.length = 0;
+    const mostrarLetras = document.querySelector(".letras-rechazadas");
+    mostrarLetras.innerHTML = "Letras rechazadas: " + letrasRechazadas;
+
+}
 
 
     
@@ -169,8 +210,7 @@ function agregarLetraIngresada (letra){
     var palabraActual = "Oracle";
     var letrasRechazadas = [];
     var jugando = false;
-
-
+    var errores = 0;        //Sino el evento de tecla se puede hacer antes.
 
     var botonSiguiente = document.querySelector("#boton-siguiente");
     botonSiguiente.addEventListener("click", function(){
@@ -178,10 +218,22 @@ function agregarLetraIngresada (letra){
           
         botonSiguiente.innerHTML = "Siguiente palabra";
 
+        //Reinicio --
+
+        errores = 0;
+        letrasRechazadas=[];
+        limpiarPantalla();
+        dibujarHorca();
+        eliminarPalabraOculta();
+        eliminarRechazadas();
+
+        // ---
+
+
         palabraActual = elegirPalabra(lista);
         palabraActual = palabraActual.toLowerCase();
-        eliminarPalabraOculta();
         crearPalabraOculta(palabraActual);
+
         jugando = true;
            
     });

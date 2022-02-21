@@ -4,16 +4,16 @@ pincel.strokeStyle = "#EAF2F8";
 pincel.fillStyle = "#EAF2F8";
 pincel.lineWidth= 10;
 
-function dibujarCabeza(x,y,radio){
+function dibujarCabeza(){
 
     
     pincel.beginPath();
-    pincel.arc(x,y,radio,0,2*Math.PI); //305,110,40
+    pincel.arc(305,110,40,0,2*Math.PI); //305,110,40
     pincel.fill();
 
 }
 
-dibujarCabeza(305,110,40);
+
 
 function dibujarHorca(){
 
@@ -84,6 +84,13 @@ function dibujarPiernaIzq(){
 
 }
 
+function limpiarPantalla(){
+
+    pincel.clearRect(0,0,600,400);
+
+}
+
+dibujarCabeza();
 dibujarPiernaDer();
 dibujarPiernaIzq();
 dibujarBrazoDer();
