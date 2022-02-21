@@ -83,13 +83,6 @@ function validarEntrada(letra){
 
 }
 
-function comprobarListaRechazadas(letra){
- 
-  
-
-}
-
-
 function comprobarAceptadasYRechazadas(letra){
 
    existencia = false;    
@@ -124,8 +117,6 @@ function mostrarLetrasRechazadas(){
     mostrarLetras.innerHTML = "Letras rechazadas: " + letrasRechazadas;
 
 }
-
-
 
 
 function agregarLetraIngresada (letra){

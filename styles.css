@@ -1,16 +1,73 @@
-.container-palabra {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+html{
+    
+      font-family: 'Bebas Neue', cursive;
+      color:#EAF2F8;
+      background-color:#A9CCE3;
+}
+
+header{
+    
+    background-color:#EAF2F8;
+    padding:3rem;
+}
+
+
+.container-ahorcado-palabra{
+
+    max-width: 1920px;
+    width: 70%;
+    margin:0 auto;
     display:flex;
+   
 
+
+}
+
+.titulo{
+    
+    font-size:6rem;
+    flex-basis:100%;
+    text-align:center;
+
+}
+
+.container-palabra{
+
+    display: flex;
+    gap:2rem;
+}
+
+
+
+
+
+.boton {
+
+    font-size:4.5rem;
 }
 
 .guion-actual{
 
-    margin:0.7rem;
+    
+    margin:auto;
     font-size:9rem;
 }
 
-.letra-actual {
+.letras-rechazadas{
 
-    display: none;
+    font-size: 3rem;
+    margin: 3rem 0;
+
+}
+
+footer{
+
+    background-color:#2980B9;
+    padding:1rem;
+}
+.footer-text {
+        text-align:center;
+        font-size:3rem;
 }
